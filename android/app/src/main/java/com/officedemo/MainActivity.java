@@ -1,3 +1,5 @@
+import android.os.Bundle; // react navigation
+
 package com.officedemo;
 
 import com.facebook.react.ReactActivity;
@@ -31,5 +33,13 @@ public class MainActivity extends ReactActivity {
         // If you opted-in for the New Architecture, we enable Concurrent React (i.e. React 18).
         DefaultNewArchitectureEntryPoint.getConcurrentReactEnabled() // concurrentRootEnabled
         );
+  }
+
+  /**
+   * Add react navigation
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
 }

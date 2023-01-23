@@ -1,13 +1,17 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-import AppStatusBar from "./src/components/StatusBar";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeScreen from "./src/screens/HomeScreen";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
-      <AppStatusBar />
-      <Text>OfficeDemo</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
