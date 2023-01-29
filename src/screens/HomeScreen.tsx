@@ -1,26 +1,48 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  View
+} from "react-native";
 import React from "react";
 import { useTheme } from "@react-navigation/native";
 import Screen from "../components/Screen";
+
+interface LargeButtonProps {
+  children: React.ReactNode
+}
+
+const LargeButton: React.FC<LargeButtonProps | TouchableOpacityProps> = ({ children, ...props }) => {
+  return (
+    <TouchableOpacity activeOpacity={0.75} {...props}>
+      {children}
+    </TouchableOpacity>
+  )
+}
 
 const HomeScreen = () => {
   const { colors } = useTheme();
 
   return (
-    <Screen>
+  <Screen safeArea={{edges: ['left', 'right', 'bottom']}}>
       <ScrollView>
-        <Text style={[styles.headerText, { color: colors.text }]}>
-          OfficeDemo
-        </Text>
+      {/*<Text style={[styles.headerText, {color: colors.text}]}>OfficeDemo</Text>*/}
 
-        <View style={styles.locksContainer}>
-          <TouchableOpacity style={styles.lockButton} activeOpacity={0.75}>
-            <Text style={[{ color: colors.text }]}>Unlock Main Entrance</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.lockButton} activeOpacity={0.75}>
-            <Text style={[{ color: colors.text }]}>Unlock Your Office</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.hero}>
+        <Image source={require("../assets/img/toa-heftiba-FV3GConVSss-unsplash.jpg")} />
+      </View>
+
+      <View style={styles.locksContainer}>
+        <LargeButton style={styles.largeButton}>
+          <Text style={[{color: colors.text}]}>Unlock Main Entrance</Text>
+        </LargeButton>
+        <LargeButton style={styles.largeButton}>
+          <Text style={[{color: colors.text}]}>Unlock Your Office</Text>
+        </LargeButton>
+      </View>
       </ScrollView>
     </Screen>
   );
@@ -29,6 +51,11 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  hero: {
+    height: 200,
+    width: "100%",
+    backgroundColor: "#000010"
+  },
   headerText: {
     marginTop: 32,
     fontSize: 40,
@@ -36,9 +63,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   locksContainer: {
-    flexDirection: "row"
+    marginTop: 12,
+    // flexDirection: "row",
+    paddingHorizontal: 12
   },
-  lockButton: {
+  largeButton: {
     flex: 1,
     paddingVertical: 16,
     alignItems: "center",
@@ -48,4 +77,4 @@ const styles = StyleSheet.create({
     margin: 4,
     borderRadius: 16
   }
-});
+})
