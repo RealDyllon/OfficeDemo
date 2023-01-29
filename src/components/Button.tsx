@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {BodyText} from './Text';
+import { PRIMARY_COLOR } from "../constants/branding";
 
 interface ButtonProps extends TouchableOpacityProps {
   children?: React.ReactNode;
@@ -39,15 +40,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 8,
-    marginHorizontal: 12,
-    padding: 12,
+    marginHorizontal: 18,
+    padding: 14,
     borderWidth: 2,
-    borderRadius: 8,
+    borderRadius: 5,
     borderColor: '#ffffff',
-    backgroundColor: 'lightblue',
+    backgroundColor: PRIMARY_COLOR,
   },
   buttonOutlinedlabel: {
-    // fontWeight: 'bold',
-    fontSize: 16
+    fontSize: 17,
   },
 });

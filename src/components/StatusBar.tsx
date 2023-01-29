@@ -1,15 +1,17 @@
 import React from "react";
-import { useColorScheme, StatusBar as RNStatusBar } from "react-native";
+import { StatusBar as RNStatusBar, StatusBarProps, useColorScheme } from "react-native";
 
-const AppStatusBar = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+
+const AppStatusBar: React.FC<StatusBarProps> = ({ ...props }) => {
+  const isDarkMode = useColorScheme() === "dark";
 
   return (
     <RNStatusBar
-      barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+      barStyle={isDarkMode ? "light-content" : "dark-content"}
+      {...props}
       // backgroundColor={backgroundStyle.backgroundColor}
     />
-  )
-}
+  );
+};
 
-export default AppStatusBar
+export default AppStatusBar;
