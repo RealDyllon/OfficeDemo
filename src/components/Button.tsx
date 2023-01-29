@@ -11,7 +11,7 @@ import { PRIMARY_COLOR } from "../constants/branding";
 interface ButtonProps extends TouchableOpacityProps {
   children?: React.ReactNode;
   label?: string;
-  labelStyle: TextStyle;
+  labelStyle?: TextStyle;
 }
 
 export const ButtonOutlined: React.FC<ButtonProps> = ({
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     margin: 8,
     marginHorizontal: 18,
     padding: 14,
-    borderWidth: 2,
-    borderRadius: 5,
+    // borderWidth: 2,
+    // borderRadius: 5,
     borderColor: '#ffffff',
     backgroundColor: PRIMARY_COLOR,
   },

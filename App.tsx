@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useContext } from "react";
 import {useColorScheme} from 'react-native';
 import {
   NavigationContainer,
@@ -12,9 +12,55 @@ import HomeScreen from './src/screens/HomeScreen';
 import BookingsScreen from './src/screens/BookingsScreen';
 import AccountScreen from './src/screens/AccountScreen';
 import SignInScreen from './src/screens/SignInScreen';
+import { AuthContext, AuthProvider } from "./src/store/authContext";
+import ConferenceRoomBooking from "./src/screens/ConferenceRoomBooking";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const RootNavigator = () => {
+
+  const scheme = useColorScheme();
+
+  const {isLoggedIn} = useContext(AuthContext)
+
+
+  return ( <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      {!isLoggedIn ? (
+        <SignInScreen />
+      ) : (
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false,
+            freezeOnBlur: true,
+          }}>
+          <Tab.Screen
+            name="HomeTab"
+            component={HomeStack}
+            options={{
+              tabBarLabel: 'Home',
+            }}
+          />
+          <Tab.Screen
+            name="BookingsTab"
+            component={BookingsStack}
+            options={{
+              tabBarLabel: 'Bookings',
+            }}
+          />
+          <Tab.Screen
+            name="AccountTab"
+            component={AccountStack}
+            options={{
+              tabBarLabel: 'Account',
+            }}
+          />
+        </Tab.Navigator>
+      )}
+    </NavigationContainer>
+
+  )
+}
 
 const HomeStack = () => {
   return (
@@ -26,6 +72,7 @@ const HomeStack = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen name="Conference Room" component={ConferenceRoomBooking}/>
     </Stack.Navigator>
   );
 };
@@ -34,6 +81,7 @@ const BookingsStack = () => {
   return (
     <Stack.Navigator initialRouteName={'Bookings'}>
       <Stack.Screen name="Bookings" component={BookingsScreen} />
+      <Stack.Screen name="Conference Room" component={ConferenceRoomBooking}/>
     </Stack.Navigator>
   );
 };
@@ -47,44 +95,14 @@ const AccountStack = () => {
 };
 
 function App(): JSX.Element {
-  const scheme = useColorScheme();
-  const isSignedIn = useState(false);
+
+
   return (
+    <AuthProvider>
     <SafeAreaProvider>
-      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-        {isSignedIn ? (
-          <SignInScreen />
-        ) : (
-          <Tab.Navigator
-            screenOptions={{
-              headerShown: false,
-              freezeOnBlur: true,
-            }}>
-            <Tab.Screen
-              name="HomeTab"
-              component={HomeStack}
-              options={{
-                tabBarLabel: 'Home',
-              }}
-            />
-            <Tab.Screen
-              name="BookingsTab"
-              component={BookingsStack}
-              options={{
-                tabBarLabel: 'Bookings',
-              }}
-            />
-            <Tab.Screen
-              name="AccountTab"
-              component={AccountStack}
-              options={{
-                tabBarLabel: 'Account',
-              }}
-            />
-          </Tab.Navigator>
-        )}
-      </NavigationContainer>
+<RootNavigator />
     </SafeAreaProvider>
+    </AuthProvider>
   );
 }
 

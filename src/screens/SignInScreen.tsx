@@ -1,11 +1,14 @@
 import Screen from "../components/Screen";
 import { Image, StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { PRIMARY_COLOR } from "../constants/branding";
 import { BodyText } from "../components/Text";
 import { ButtonOutlined } from "../components/Button";
+import { AuthContext } from "../store/authContext";
 
 const SignInScreen = () => {
+  const {setIsLoggedIn} = useContext(AuthContext)
+
   return (
     <Screen safeArea={{ edges: ["left", "right", "bottom"] }} statusBar={{ barStyle: "light-content" }}>
       <View style={styles.view}>
@@ -20,6 +23,7 @@ const SignInScreen = () => {
           <ButtonOutlined labelStyle={styles.SignInButtonlabel} label={"Register for an account"} style={styles.SignInButton} />
         </View>
       </View>
+      <ButtonOutlined labelStyle={styles.SignInButtonlabel} label={'Sign in'} onPress={() => setIsLoggedIn(true)}/>
     </Screen>
   );
 };
