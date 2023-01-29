@@ -6,7 +6,7 @@ const BookingsScreen = () => {
     <Screen>
       <Text>Bookings</Text>
     </Screen>
-  )
-}
+  );
+};
 
-export default BookingsScreen
+export default BookingsScreen;

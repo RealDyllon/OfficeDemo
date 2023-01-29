@@ -7,24 +7,26 @@ const HomeScreen = () => {
   const { colors } = useTheme();
 
   return (
-  <Screen>
+    <Screen>
       <ScrollView>
-      <Text style={[styles.headerText, {color: colors.text}]}>OfficeDemo</Text>
+        <Text style={[styles.headerText, { color: colors.text }]}>
+          OfficeDemo
+        </Text>
 
-      <View style={styles.locksContainer}>
-        <TouchableOpacity style={styles.lockButton} activeOpacity={0.75}>
-          <Text style={[{color: colors.text}]}>Unlock Main Entrance</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.lockButton} activeOpacity={0.75}>
-          <Text style={[{color: colors.text}]}>Unlock Your Office</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.locksContainer}>
+          <TouchableOpacity style={styles.lockButton} activeOpacity={0.75}>
+            <Text style={[{ color: colors.text }]}>Unlock Main Entrance</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.lockButton} activeOpacity={0.75}>
+            <Text style={[{ color: colors.text }]}>Unlock Your Office</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-  </Screen>
-  )
-}
+    </Screen>
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   headerText: {
@@ -45,6 +47,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 4,
     borderRadius: 16
-
   }
-})
+});

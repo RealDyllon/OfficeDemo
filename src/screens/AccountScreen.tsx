@@ -6,7 +6,7 @@ const AccountScreen = () => {
     <Screen>
       <Text>Accounts</Text>
     </Screen>
-  )
-}
+  );
+};
 
-export default AccountScreen
+export default AccountScreen;
