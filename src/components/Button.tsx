@@ -48,5 +48,6 @@ const styles = StyleSheet.create({
   },
   buttonOutlinedlabel: {
     fontSize: 17,
+    color: '#FFFFFF'
   },
 });
