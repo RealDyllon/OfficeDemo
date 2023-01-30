@@ -5,6 +5,13 @@ module.exports = {
     ios:{},
     android:{}
   },
+  dependencies: {
+    'react-native-vector-icons': {
+      platforms: {
+        ios: null, // https://github.com/oblador/react-native-vector-icons#ios
+      },
+    },
+  },
   assets:[
     './assets/images/',
     './assets/fonts/'
