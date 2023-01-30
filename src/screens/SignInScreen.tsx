@@ -19,11 +19,10 @@ const SignInScreen = () => {
           <BodyText style={styles.welcomeText}>Welcome to {"\n"}your new office.</BodyText>
         </View>
         <View style={styles.ButtonContainer}>
-          <ButtonOutlined labelStyle={styles.SignInButtonlabel} label={"Sign in"} style={styles.SignInButton} />
+          <ButtonOutlined labelStyle={styles.SignInButtonlabel} label={"Sign in"} style={styles.SignInButton} onPress={() => setIsLoggedIn(true)}/>
           <ButtonOutlined labelStyle={styles.SignInButtonlabel} label={"Register for an account"} style={styles.SignInButton} />
         </View>
       </View>
-      <ButtonOutlined labelStyle={styles.SignInButtonlabel} label={'Sign in'} onPress={() => setIsLoggedIn(true)}/>
     </Screen>
   );
 };
