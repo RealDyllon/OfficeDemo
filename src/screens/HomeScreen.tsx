@@ -1,16 +1,22 @@
-import { ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { useTheme } from "@react-navigation/native";
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import React, {useState} from 'react';
+// import {useTheme} from '@react-navigation/native';
 
-import Screen from "../components/Screen";
-import { ButtonOutlined } from "../components/Button";
-import CenteredModal from "../components/Modal";
-import { BodyText } from "../components/Text";
+import Screen from '../components/Screen';
+import {ButtonOutlined} from '../components/Button';
+import CenteredModal from '../components/Modal';
+import {BodyText} from '../components/Text';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const HomeScreen = () => {
-  const { colors } = useTheme();
+  // const {colors} = useTheme();
 
   const [isModalVisible, setModalVisible] = useState(false);
   const hideModal = () => setModalVisible(false);
@@ -20,22 +26,37 @@ const HomeScreen = () => {
   };
 
   return (
-    <Screen safeArea={{ edges: ["left", "right", "bottom"] }}>
+    <Screen safeArea={{edges: ['left', 'right', 'bottom']}}>
       <ScrollView>
-
-        <ImageBackground source={require("../../assets/images/toa-heftiba-FV3GConVSss-unsplash.jpg")}
-                         style={styles.hero} />
+        <ImageBackground
+          source={require('../../assets/images/toa-heftiba-FV3GConVSss-unsplash.jpg')}
+          style={styles.hero}
+        />
 
         <View style={styles.locksContainer}>
           <View style={styles.locksRow}>
-            <ButtonOutlined style={styles.largeButton} label="Unlock Main Entrance" />
-            <ButtonOutlined style={styles.largeButton} label="Unlock Your Office"
-                            onPress={handleUnlockPress}
-            />
+            <ButtonOutlined style={styles.largeButton}>
+              <Icon name="unlock" light size={30} color="#ffffff" />
+              <BodyText style={styles.buttonText}>
+                Unlock Main Entrance
+              </BodyText>
+            </ButtonOutlined>
+            <ButtonOutlined
+              style={styles.largeButton}
+              onPress={handleUnlockPress}>
+              <Icon name="unlock" light size={30} color="#ffffff" />
+              <BodyText style={styles.buttonText}>Unlock Your Office</BodyText>
+            </ButtonOutlined>
           </View>
           <View style={styles.locksRow}>
-            <ButtonOutlined style={styles.largeButton} label="Book Conference Room" />
-            <ButtonOutlined style={styles.largeButton} label="Renew Lease" />
+            <ButtonOutlined style={styles.largeButton}>
+              <BodyText style={styles.buttonText}>
+                Book Conference Room
+              </BodyText>
+            </ButtonOutlined>
+            <ButtonOutlined style={styles.largeButton}>
+              <BodyText style={styles.buttonText}>Renew Lease</BodyText>
+            </ButtonOutlined>
           </View>
           <CenteredModal isVisible={isModalVisible} onBackdropPress={hideModal}>
             <View style={styles.modal}>
@@ -58,38 +79,41 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   hero: {
     height: 300,
-    width: "100%",
-    backgroundColor: "#000010"
+    width: '100%',
+    backgroundColor: '#000010',
   },
   headerText: {
     marginTop: 32,
     fontSize: 40,
     paddingStart: 16,
-    fontWeight: "bold"
+    fontWeight: 'bold',
   },
   locksContainer: {
     marginTop: 12,
-    flexDirection: "column",
-    paddingHorizontal: 8
+    flexDirection: 'column',
+    paddingHorizontal: 8,
   },
   locksRow: {
     marginTop: 12,
-    flexDirection: "row",
-    paddingHorizontal: 8
+    flexDirection: 'row',
+    paddingHorizontal: 8,
   },
   largeButton: {
     flex: 1,
-    paddingVertical: 60,
-    width: "50%",
-
-
+    paddingVertical: 40,
+    width: '50%',
   },
   modal: {
     height: 100,
     margin: 20,
-    backgroundColor: "#ffffff"
+    backgroundColor: '#ffffff',
   },
   unlockAnimation: {
-    margin: 12
-  }
+    margin: 12,
+  },
+  buttonText: {
+    marginTop: 12,
+    fontSize: 17,
+    color: '#ffffff',
+  },
 });
