@@ -13,7 +13,11 @@ import {ButtonOutlined} from '../components/Button';
 import CenteredModal from '../components/Modal';
 import {BodyText} from '../components/Text';
 
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import FA5 from "react-native-vector-icons/FontAwesome5";
+import Ionicon from "react-native-vector-icons/Ionicons";
+import FA from "react-native-vector-icons/FontAwesome";
+
+import { PRIMARY_COLOR } from "../constants/branding";
 
 const HomeScreen = () => {
   // const {colors} = useTheme();
@@ -28,36 +32,26 @@ const HomeScreen = () => {
   return (
     <Screen safeArea={{edges: ['left', 'right', 'bottom']}}>
       <ScrollView>
-        <ImageBackground
-          source={require('../../assets/images/toa-heftiba-FV3GConVSss-unsplash.jpg')}
-          style={styles.hero}
-        />
-
+        <ImageBackground source={require("../../assets/images/toa-heftiba-FV3GConVSss-unsplash.jpg")}
+                         style={styles.hero} />
         <View style={styles.locksContainer}>
-          <View style={styles.locksRow}>
             <ButtonOutlined style={styles.largeButton}>
-              <Icon name="unlock" light size={30} color="#ffffff" />
-              <BodyText style={styles.buttonText}>
-                Unlock Main Entrance
-              </BodyText>
+              <FA5 name="building" size={40} color={PRIMARY_COLOR} />
+              <BodyText style={styles.lockButtonLabel}> Unlock Main Entrance</BodyText>
             </ButtonOutlined>
-            <ButtonOutlined
-              style={styles.largeButton}
-              onPress={handleUnlockPress}>
-              <Icon name="unlock" light size={30} color="#ffffff" />
-              <BodyText style={styles.buttonText}>Unlock Your Office</BodyText>
-            </ButtonOutlined>
-          </View>
-          <View style={styles.locksRow}>
-            <ButtonOutlined style={styles.largeButton}>
-              <BodyText style={styles.buttonText}>
-                Book Conference Room
-              </BodyText>
+            <ButtonOutlined style={styles.largeButton} onPress={handleUnlockPress}
+            >
+              <FA5 name="door-open" size={40} color={PRIMARY_COLOR} />
+              <BodyText style={styles.lockButtonLabel}> Unlock Office Entrance</BodyText>
             </ButtonOutlined>
             <ButtonOutlined style={styles.largeButton}>
-              <BodyText style={styles.buttonText}>Renew Lease</BodyText>
+              <Ionicon name="people" size={40} color={PRIMARY_COLOR} />
+              <BodyText style={styles.lockButtonLabel}> Book Conference Room</BodyText>
             </ButtonOutlined>
-          </View>
+            <ButtonOutlined style={styles.largeButton}>
+              <FA name="calendar-plus-o" size={40} color={PRIMARY_COLOR} />
+              <BodyText style={styles.lockButtonLabel}> Extend Lease</BodyText>
+            </ButtonOutlined>
           <CenteredModal isVisible={isModalVisible} onBackdropPress={hideModal}>
             <View style={styles.modal}>
               {/*<View style={styles.unlockAnimation}>*/}
@@ -93,15 +87,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingHorizontal: 8,
   },
-  locksRow: {
-    marginTop: 12,
-    flexDirection: 'row',
-    paddingHorizontal: 8,
-  },
   largeButton: {
     flex: 1,
-    paddingVertical: 40,
-    width: '50%',
+    flexDirection: "row",
+    paddingVertical: 10,
+    margin: 10,
+    width: "90%",
+    backgroundColor: "transparent",
+    borderColor: PRIMARY_COLOR,
+    borderWidth: 3,
+    borderRadius: 36,
+    justifyContent: "center",
+    alignItems: "center"
   },
   modal: {
     height: 100,
@@ -109,11 +106,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   unlockAnimation: {
-    margin: 12,
+    margin: 12
   },
-  buttonText: {
-    marginTop: 12,
-    fontSize: 17,
-    color: '#ffffff',
-  },
+  lockButtonLabel: {
+    fontSize: 14,
+    fontWeight: "600",
+    textAlign: "center",
+    margin: 5
+  }
 });
